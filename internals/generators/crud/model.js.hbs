@@ -1,0 +1,37 @@
+/*
+* {{ properCase name }} Model
+*
+* This contains defalut {{ properCase name }} model.
+*/
+
+
+import mongoose, { mongo } from 'mongoose'
+
+const {{name}}Schema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+            trim: true,
+            maxlength: 50
+        },
+        description: String,
+    
+        status: {
+            type: String,
+            required: true,
+            enum: ['active', 'complete', 'pastdue'],
+            default: 'active'
+        },
+        createdBy: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: 'user',
+            required: true
+        }
+    },
+    { timestamps: true }
+)
+
+{{name}}Schema.index({ user: 1, name: 1 }, { unique: true })
+
+export default mongoose.model('{{ properCase name}}', {{name}}Schema)

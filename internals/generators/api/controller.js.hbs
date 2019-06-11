@@ -1,0 +1,159 @@
+/*
+* {{ properCase name }} Controller
+*
+* This contains default {{ properCase name }} controller.
+*/
+
+
+import {{ properCase name }} from './model';
+import cuid from 'cuid';
+import slug from 'limax';
+import sanitizeHtml from 'sanitize-html';
+
+/**
+* Get all {{name}}s
+* @param req
+* @param res
+* @returns void
+*/
+
+export async function get{{ properCase name }}(req, res) {
+  try {
+    const doc = await {{properCase name}}
+    .find({
+        // {createdBy: req.user._id}
+    })
+    .sort('-dateAdded')
+    .lean()
+    .exec()
+
+    return res.status(200).json({data:doc})
+   } catch(e){
+        console.error(e)
+        return res.status(400).send(e)
+   }
+}
+
+/**
+* Save a {{name}}
+* @param req
+* @param res
+* @returns void
+*/
+
+export async function add{{ properCase name}}(req, res) {
+  try {
+    // Save model data for Sanitization
+    // const createdBy = req.user._id
+    // console.log('createdBy', createdBy);
+    const sanitized{{ properCase name }} = new {{ properCase name }}(req.body);
+
+    // Let's sanitize inputs
+     sanitized{{ properCase name }}.item = sanitizeHtml(sanitized{{ properCase name }}.item);
+    // sanitized{{ properCase name }}.info = sanitizeHtml(sanitized{{ properCase name }}.info); --}}
+    // sanitized{{ properCase name }}.created_by = sanitizeHtml(sanitized{{ properCase name }}.created_by);
+    // sanitized{{ properCase name }}.created_at = sanitizeHtml(sanitized{{ properCase name }}.created_at);
+
+    // Add slug data for specific field
+    sanitized{{ properCase name }}.slug = slug(sanitized{{ properCase name }}
+        .item.toLowerCase(), {lowercase: true});
+
+    // Add cuid for the model
+    sanitized{{ properCase name }}.cuid = cuid();
+
+    // Make asynchronous call to save the model to Database
+    const {{ name }} = await {{ properCase name }}.create(sanitized{{ properCase name }});
+        return res.status(201)
+        .json({{ name }}.toJSON());
+    } catch (e) {
+        console.log(e);
+        return res.status(400).send(e);
+    }
+}
+
+/**
+* Get a single {{name}} By Id
+* @param req
+* @param res
+* @returns void
+*/
+
+export async function get{{ properCase name }}ById(req, res) {
+  try {
+    console.log("cuid is :", req.params.cuid);
+    const doc = await {{properCase name}}
+        .findOne({ 
+            // createdBy: req.user._id,
+            cuid: req.params.cuid,
+            // _id: req.params.id
+            })
+        .lean()
+        .exec()
+
+    if (!doc) {
+        return res.status(400).end()
+    }
+
+        return res.status(200).json({ data: doc })
+   } catch (e) {
+      return res.status(400).send(e);
+   }
+}
+
+/**
+* Update a {{name}}
+* @param req
+* @param res
+* @returns void
+*/
+
+export async function updateOne{{ properCase name }}(req, res) {
+  try {
+    const updatedDoc = await {{ properCase name }}
+        .findOneAndUpdate({
+            // createdBy: req.user._id,
+            cuid: req.params.cuid,
+            // _id: req.params.id
+            },
+            req.body,
+            { new: true }
+        )
+        .lean()
+        .exec()
+
+    if (!updatedDoc) {
+        return res.status(400).end()
+    }
+        return res.status(200).json({ data: updatedDoc })
+   } catch (e) {
+       console.error(e);
+       return res.status(400).send(e);
+   }
+}
+
+
+/**
+* Delete a {{name}}
+* @param req
+* @param res
+* @returns void
+*/
+
+export async function delete{{ properCase name }}(req, res) {
+  try {
+    const removed = await {{properCase name}}
+        .findOneAndRemove({
+           // createdBy:req.user._id,
+            cuid: req.params.cuid
+           // _id:req.params.id,
+        })
+    if(!removed){
+        return res.status(400).end()
+    }
+     return res.status(200)
+        .json({data:removed})
+   } catch (e) {
+       console.error(e);
+       return res.status(400).send(e);
+   }
+}

@@ -1,0 +1,28 @@
+/*
+* {{ properCase name }} Routes
+*
+* This contains defalut {{ properCase name }} Route for the API.
+*/
+
+
+import { Router } from 'express';
+import * as {{properCase name}}Controller from './controller';
+const {{properCase name}}Router = new Router();
+
+// Get all {{ properCase name }}s
+{{properCase name}}Router.route('/{{name}}s').get({{properCase name}}Controller.get{{properCase name}});
+
+// Get one {{ properCase name }} by cuid
+{{properCase name}}Router.route('/{{name}}s/:cuid').get({{properCase name}}Controller.get{{properCase name}}ById);
+
+// Add a new {{ properCase name }}
+{{properCase name}}Router.route('/{{name}}s').post({{properCase name}}Controller.add{{properCase name}});
+
+// Update a {{ properCase name }}
+{{properCase name}}Router.route('/{{name}}s/:cuid').put({{properCase name}}Controller.updateOne{{properCase name}});
+
+
+// Delete a {{ properCase name }} by cuid
+{{properCase name}}Router.route('/{{name}}s/:cuid').delete({{properCase name}}Controller.delete{{properCase name}});
+
+export default {{properCase name}}Router;

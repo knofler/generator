@@ -1,0 +1,30 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
+/**
+    * {{ properCase name }} Broadcast updates to client when the model changes
+*/
+
+import {{ properCase name }} from './model';
+
+function onSave(socket, doc, cb) {
+    socket.emit('{{ name }}:save', doc);
+}
+
+function onRemove(socket, doc, cb) {
+    socket.emit('{{ name }}:remove', doc);
+}
+
+function register(socket) {
+    console.log('{{ properCase name }} imported in socket is :', 
+    {{ properCase name }}.schema.post);
+    console.log('Register function inside {{ properCase name }} API Model has been executed');
+    {{ properCase name }}.schema.post('save', (doc) =>
+        onSave(socket, doc)
+    );
+    {{ properCase name }}.schema.post('remove', (doc) =>
+        onRemove(socket, doc)
+    );
+}
+
+
+export { register };

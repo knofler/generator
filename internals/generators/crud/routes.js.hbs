@@ -1,0 +1,29 @@
+/*
+* {{ properCase name }} Routes
+*
+* This contains defalut {{ properCase name }} Route for the API.
+*/
+
+// import { crudRouter } from '../../util/crud_router'
+
+
+import { Router } from 'express';
+import controllers from './{{name}}.controllers';
+
+const crudRouter = Router();
+
+// /api/item
+crudRouter
+  .route('/')
+  .get(controllers.getOne)
+  .post(controllers.createOne);
+
+// /api/item/:id
+crudRouter
+  .route('/:id')
+  .get(controllers.getOne)
+  .put(controllers.updateOne)
+  .delete(controllers.removeOne);
+
+export default crudRouter
+;
