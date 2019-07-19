@@ -1,9 +1,9 @@
 /**
  *
- * Asynchronously loads the component for Delete
+ * Asynchronously loads the component for Book
  *
  */
 
-import loadable from "loadable-components";
+import loadable from 'loadable-components';
 
-export default loadable(() => import("./index"));
+export default loadable(() => import('./index'));

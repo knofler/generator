@@ -1,0 +1,30 @@
+/*
+    * AWS {{ upperCase name }} {{ properCase name }} Routes
+*
+* This contains Routes for the AWS Resources.
+*/
+
+
+import { Router } from 'express';
+import * as {{ properCase name }}AWSController from './controller';
+const {{ properCase name }}AWSRouter = new Router();
+
+// Get all{{ properCase name }}s
+//{{ properCase name }}AWSRouter.route('/{{ name }}s').get({{ properCase name }}AWSController.get{{ properCase name }});
+
+// Get one{{ properCase name }} by cuid
+//{{ properCase name }}AWSRouter.route('/{{ name }}s/:cuid').get({{ properCase name }}AWSController.get{{ properCase name }}ById);
+
+// Create A New Media Live{{ properCase name }} for Input,Channel and Media Package
+{{ properCase name }}AWSRouter.route('/{{ name }}s').post({{ properCase name }}AWSController.add{{ properCase name }});
+
+// Update a{{ properCase name }}
+//{{ properCase name }}AWSRouter.route('/{{ name }}s/:cuid').put({{ properCase name }}AWSController.updateOne{{ properCase name }});
+
+
+// Delete a{{ properCase name }} by cuid
+//{{ properCase name }}AWSRouter.route('/{{ name }}s/:cuid').delete({{ properCase name }}AWSController.delete{{ properCase name }});
+
+
+
+export default {{ properCase name }}AWSRouter;

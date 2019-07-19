@@ -99,8 +99,12 @@
  }
 
 
- .jsonResponse {
+ .jsonAwsResponse {
    color: rgb(68, 126, 235);
+ }
+
+ .jsonResponse {
+   color: rgb(190, 142, 31);
  }
 
  .userInput {

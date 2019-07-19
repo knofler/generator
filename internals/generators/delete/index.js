@@ -5,7 +5,7 @@
 const componentExists = require("../utils/componentExists");
 
 module.exports = {
-  description: "Add a Create container component",
+  description: "Add a Delete container component",
   prompts: [
     {
       type: "list",

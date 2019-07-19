@@ -9,9 +9,12 @@ const path = require("path");
 const { exec } = require("child_process");
 
 const apiGenerator = require("./api/index.js");
+const awsGenerator = require("./aws/index.js");
 const readGenerator = require("./read/index.js");
 const createGenerator = require("./create/index.js");
 const updateGenerator = require("./update/index.js");
+const deleteGenerator = require("./delete/index.js");
+const controlGenerator = require("./control/index.js");
 const crudGenerator = require("./crud/index.js");
 const componentGenerator = require("./component/index.js");
 const containerGenerator = require("./container/index.js");
@@ -21,9 +24,12 @@ const languageGenerator = require("./language/index.js");
 module.exports = plop => {
   plop.setGenerator("fullStack", fullStackGenerator);
   plop.setGenerator("api", apiGenerator);
+  plop.setGenerator("aws", awsGenerator);
   plop.setGenerator("read", readGenerator);
   plop.setGenerator("create", createGenerator);
+  plop.setGenerator("delete", deleteGenerator);
   plop.setGenerator("update", updateGenerator);
+  plop.setGenerator("control", controlGenerator);
   plop.setGenerator("NOT_READY_crud", crudGenerator);
   plop.setGenerator("component", componentGenerator);
   plop.setGenerator("container", containerGenerator);

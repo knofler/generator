@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for Create
+ * Asynchronously loads the component for Book
  *
  */
 
