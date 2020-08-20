@@ -18,7 +18,7 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
-    "bcrypt": "^3.0.2",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "commander": "^2.18.0",
     "cors": "^2.8.5",
