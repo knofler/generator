@@ -32,7 +32,7 @@
     "mongoose": "^5.3.13",
     "morgan": "^1.9.1",
     "npm": "^6.9.0",
-    "validator": "^10.9.0"
+    "validator": "^13.7.0"
   },
   "dev-dependencies": {
     "@babel/cli": "7.1.2",
